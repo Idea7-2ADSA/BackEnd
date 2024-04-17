@@ -17,7 +17,7 @@ public class Reinicializacao {
             // Sistema operacional não suportado
             throw new UnsupportedOperationException("Sistema operacional não suportado.");
         }
-
+        // Teste
         try {
             Process processo = Runtime.getRuntime().exec(comando);
         } catch (Exception e) {
