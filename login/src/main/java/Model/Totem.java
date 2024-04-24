@@ -6,12 +6,14 @@ import com.github.britooo.looca.api.group.discos.DiscoGrupo;
 import com.github.britooo.looca.api.group.discos.Volume;
 import com.github.britooo.looca.api.group.memoria.Memoria;
 import com.github.britooo.looca.api.group.processador.Processador;
+import com.github.britooo.looca.api.group.rede.RedeInterface;
 import com.github.britooo.looca.api.group.sistema.Sistema;
 
 import java.util.*;
 
 public class Totem {
-    private String codigoTotem;
+    private Integer codigoTotem;
+    private final String macAddress;
 
     Looca looca = new Looca();
 
@@ -19,17 +21,39 @@ public class Totem {
     private final Memoria memoria = looca.getMemoria();
     private final Processador processador = looca.getProcessador();
     private final DiscoGrupo grupoDisco = looca.getGrupoDeDiscos();
+    private final List<RedeInterface> interfaces = looca.getRede().getGrupoDeInterfaces().getInterfaces();
 
-    public Totem(String codigoTotem) {
+    public Totem(Integer codigoTotem) {
         this.codigoTotem = codigoTotem;
+        this.macAddress = setMacAAdress();
     }
 
-    public String getCodigoTotem() {
+    public Totem() {
+        this.codigoTotem = 0;
+        this.macAddress = setMacAAdress();
+    }
+
+    public String setMacAAdress() {
+        List<String> listaMacAAdress = new ArrayList<>();
+        for (RedeInterface anInterface : interfaces) {
+            if (!anInterface.getEnderecoIpv4().isEmpty()) {
+                listaMacAAdress.add(anInterface.getEnderecoMac());
+            }
+        }
+        return listaMacAAdress.get(1);
+    }
+
+
+    public Integer getCodigoTotem() {
         return codigoTotem;
     }
 
-    public void setCodigoTotem(String codigoTotem) {
+    public void setCodigoTotem(Integer codigoTotem) {
         this.codigoTotem = codigoTotem;
+    }
+
+    public String getMacAddress() {
+        return macAddress;
     }
 
     //getters Sistema
@@ -47,6 +71,9 @@ public class Totem {
     }
 
     //getters memoria
+    public Memoria getMemoria() {
+        return this.memoria;
+    }
 
     public Long getMemoriaTotal() {
         return  memoria.getTotal();
@@ -60,7 +87,19 @@ public class Totem {
         return  memoria.getEmUso();
     }
 
+    public Long getPorcentagemUsoMemoria() {
+
+        return null;
+    }
+
     //getters processador
+    public Processador getProcessador() {
+        return this.processador;
+    }
+
+    public String getProcessadorNome() {
+        return processador.getNome();
+    }
 
     public String getProcessadorFabricante() {
         return processador.getFabricante();
@@ -78,11 +117,14 @@ public class Totem {
         return processador.getFrequencia();
     }
 
-    public Double getProcessadorUso() {
-        return processador.getUso();
+    public Long getProcessadorUso() {
+        return processador.getUso().longValue();
     }
 
     //getters discos e volumes
+    public DiscoGrupo getGrupoDisco() {
+        return  this.grupoDisco;
+    }
 
     public List<String> getModelosDiscos() {
         List<String> modelosDiscos = new ArrayList<>();
@@ -120,5 +162,13 @@ public class Totem {
             mapaLeituraDosDiscos.put(disco.getNome(),disco.getEscritas());
         }
         return mapaLeituraDosDiscos;
+    }
+
+    @Override
+    public String toString() {
+        return """
+                Código do totem: %s
+                MacAddress do totem: %s
+                """.formatted(this.codigoTotem, this.macAddress);
     }
 }
