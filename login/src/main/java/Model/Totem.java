@@ -88,8 +88,8 @@ public class Totem {
     }
 
     public Long getPorcentagemUsoMemoria() {
-
-        return null;
+        Long emUso = memoria.getTotal() - memoria.getDisponivel();
+        return emUso * 100/ memoria.getTotal();
     }
 
     //getters processador
@@ -148,27 +148,16 @@ public class Totem {
         return mapaPorcentagemUsoVolumes;
     }
 
-    public Map<String, Long> getLeituraDosDiscos() {
-        Map<String, Long> mapaLeituraDosDiscos = new HashMap<>();
-        for (Disco disco : grupoDisco.getDiscos()) {
-            mapaLeituraDosDiscos.put(disco.getNome(),disco.getLeituras());
-        }
-        return mapaLeituraDosDiscos;
-    }
-
-    public Map<String, Long> getEscritaDosDiscos() {
-        Map<String, Long> mapaLeituraDosDiscos = new HashMap<>();
-        for (Disco disco : grupoDisco.getDiscos()) {
-            mapaLeituraDosDiscos.put(disco.getNome(),disco.getEscritas());
-        }
-        return mapaLeituraDosDiscos;
-    }
-
     @Override
     public String toString() {
         return """
                 Código do totem: %s
                 MacAddress do totem: %s
                 """.formatted(this.codigoTotem, this.macAddress);
+    }
+
+    public static void main(String[] args) {
+        Totem totem = new Totem(123123);
+
     }
 }
