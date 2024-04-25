@@ -1,25 +1,23 @@
 package Model;
 
 public class HardWare {
-    private Integer id;
+    private Integer idHardWare;
     private String tipo;
-    private Integer fkTotem;
 
-    public HardWare(Integer id, String tipo, Integer fkTotem) {
-        this.id = id;
+    public HardWare(Integer id, String tipo) {
+        this.idHardWare = id;
         this.tipo = tipo;
-        this.fkTotem = fkTotem;
     }
 
     public HardWare() {
     }
 
     public Integer getId() {
-        return id;
+        return idHardWare;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setIdHardWare(Integer id) {
+        this.idHardWare = id;
     }
 
     public String getTipo() {
@@ -30,20 +28,13 @@ public class HardWare {
         this.tipo = tipo;
     }
 
-    public Integer getFkTotem() {
-        return fkTotem;
-    }
-
-    public void setFkTotem(Integer fkTotem) {
-        this.fkTotem = fkTotem;
-    }
 
     @Override
     public String toString() {
         return """
+                
                 ID do hardware: %d
                 tipo: %s
-                FK do totem: %d
-                """.formatted(this.id, this.tipo, this.fkTotem);
+                """.formatted(this.idHardWare, this.tipo);
     }
 }

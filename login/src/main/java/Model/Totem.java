@@ -75,6 +75,10 @@ public class Totem {
         return this.memoria;
     }
 
+    public String getMemoriaNome() {
+        return "";
+    }
+
     public Long getMemoriaTotal() {
         return  memoria.getTotal();
     }
@@ -151,13 +155,9 @@ public class Totem {
     @Override
     public String toString() {
         return """
+                
                 Código do totem: %s
                 MacAddress do totem: %s
                 """.formatted(this.codigoTotem, this.macAddress);
-    }
-
-    public static void main(String[] args) {
-        Totem totem = new Totem(123123);
-
     }
 }
