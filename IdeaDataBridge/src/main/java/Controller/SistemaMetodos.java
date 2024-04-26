@@ -1,9 +1,11 @@
+package Controller;
+import Model.Usuario;
 import java.util.HashMap;
 import java.util.Map;
 
 public class SistemaMetodos {
    private Map<String, Usuario> mapaDeUsuarios = new HashMap<>();
-   protected void adicionarUsuarioPadrao() {
+   public void adicionarUsuarioPadrao() {
         String email = "daniel@gmail.com";
         String senha = "daniel123";
         Usuario usuario = new Usuario("Daniel", email, "11.111.111/1111-11", senha);
