@@ -115,12 +115,24 @@
                 conn.update
                         ("insert into dadosHardware(uso, dataHora, nomeComponente, fkHardWare,fkTotem) values(?, ?, ?, ?, ?)",
                                 totem.getProcessadorUso(), dataHora, totem.getProcessadorNome(), idProcesador, codigoTotem);
+                System.out.println("""
+                        inserindo dados da CPU:
+                        Porcentagem de uso: %d
+                        Data e hora: %s
+                        Nome do componente: %s
+                        """.formatted(totem.getProcessadorUso(), dataHora, totem.getProcessadorNome()));
             }
             //Inserindo dados da Memoria
             if(idMemoria != null) {
                 conn.update
                         ("insert into dadosHardware(uso, dataHora, nomeComponente, fkHardWare,fkTotem) values(?, ?, ?, ?, ?)",
                                 totem.getPorcentagemUsoMemoria(), dataHora, totem.getMemoriaNome(), idMemoria, codigoTotem);
+                System.out.println("""
+                        inserindo dados da memoria:
+                        Porcentagem de uso: %d
+                        Data e hora: %s
+                        Nome do componente: %s
+                        """.formatted(totem.getPorcentagemUsoMemoria(), dataHora, totem.getMemoriaNome()));
             }
             //Inserindo dados do Disco
             if(idDisco != null) {
@@ -129,7 +141,12 @@
                     conn.update
                             ("insert into dadosHardware(uso, dataHora, nomeComponente, fkHardWare,fkTotem) values(?, ?, ?, ?, ?)",
                                     entry.getValue(), dataHora, entry.getKey(),idDisco, codigoTotem);
-
+                    System.out.println("""
+                            inserindo dados do(s) disco(s):
+                            Porcentagem de uso: %d
+                            Data e hora: %s
+                            Nome do componente: %s
+                            """.formatted(entry.getValue(), dataHora, entry.getKey()));
                 }
             }
             Thread.sleep(15000);
