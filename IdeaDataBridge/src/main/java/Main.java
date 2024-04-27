@@ -113,7 +113,7 @@
             //Inserindo dados do processador;
             if (idProcesador != null) {
                 conn.update
-                        ("insert into dadosHardware(uso, dataHora, nomeComponente, fkHardWare,fkTotem) values(?, ?, ?, ?, ?)",
+                        ("insert into dadosHardWare(uso, dataHora, nomeComponente, fkHardWare,fkTotem) values(?, ?, ?, ?, ?)",
                                 totem.getProcessadorUso(), dataHora, totem.getProcessadorNome(), idProcesador, codigoTotem);
                 System.out.println("""
                         inserindo dados da CPU:
@@ -125,7 +125,7 @@
             //Inserindo dados da Memoria
             if(idMemoria != null) {
                 conn.update
-                        ("insert into dadosHardware(uso, dataHora, nomeComponente, fkHardWare,fkTotem) values(?, ?, ?, ?, ?)",
+                        ("insert into dadosHardWare(uso, dataHora, nomeComponente, fkHardWare,fkTotem) values(?, ?, ?, ?, ?)",
                                 totem.getPorcentagemUsoMemoria(), dataHora, totem.getMemoriaNome(), idMemoria, codigoTotem);
                 System.out.println("""
                         inserindo dados da memoria:
@@ -139,7 +139,7 @@
                 Map<String, Long> porcentagemUsoPorVolume= totem.getPorcentagemUsoVolumes();
                 for (Map.Entry<String, Long> entry: porcentagemUsoPorVolume.entrySet()) {
                     conn.update
-                            ("insert into dadosHardware(uso, dataHora, nomeComponente, fkHardWare,fkTotem) values(?, ?, ?, ?, ?)",
+                            ("insert into dadosHardWare(uso, dataHora, nomeComponente, fkHardWare,fkTotem) values(?, ?, ?, ?, ?)",
                                     entry.getValue(), dataHora, entry.getKey(),idDisco, codigoTotem);
                     System.out.println("""
                             inserindo dados do(s) disco(s):
