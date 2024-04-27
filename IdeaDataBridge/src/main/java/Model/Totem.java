@@ -36,11 +36,11 @@ public class Totem {
     public String setMacAAdress() {
         List<String> listaMacAAdress = new ArrayList<>();
         for (RedeInterface anInterface : interfaces) {
-            if (!anInterface.getEnderecoIpv4().isEmpty() && anInterface.getNome().contains("wlan")) {
+            if (!anInterface.getEnderecoIpv4().isEmpty()) {
                 listaMacAAdress.add(anInterface.getEnderecoMac());
             }
         }
-        return listaMacAAdress.get(0);
+        return listaMacAAdress.get(1);
     }
 
 
