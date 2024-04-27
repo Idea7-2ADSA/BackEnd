@@ -40,9 +40,12 @@ public class Totem {
                 listaMacAAdress.add(anInterface.getEnderecoMac());
             }
         }
+        if (listaMacAAdress.isEmpty()) {
+            return "";
+        }
         return listaMacAAdress.get(0);
     }
-    
+
     public Integer getCodigoTotem() {
         return codigoTotem;
     }
