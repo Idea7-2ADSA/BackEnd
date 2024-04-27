@@ -12,10 +12,9 @@ import com.github.britooo.looca.api.group.sistema.Sistema;
 import java.util.*;
 
 public class Totem {
+    static Looca looca = new Looca();
     private Integer codigoTotem;
     private final String macAddress;
-
-    Looca looca = new Looca();
 
     private final Sistema sistema = looca.getSistema();
     private final Memoria memoria = looca.getMemoria();
