@@ -3,10 +3,10 @@ package Service;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-public class ConexaoMySQL extends Conexoes{
+public class ConexaoMySqlService extends ConexoesService {
     private final JdbcTemplate con;
 
-    public ConexaoMySQL() {
+    public ConexaoMySqlService() {
         BasicDataSource bds = new BasicDataSource();
         bds.setDriverClassName("com.mysql.cj.jdbc.Driver");
         bds.setUrl("jdbc:mysql://localhost:3306/ideabd");

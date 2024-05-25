@@ -1,8 +1,8 @@
-package Controller;
+package Service;
 
+import Controller.ConexoesController;
 import Model.HardWare;
 import Model.Totem;
-import Service.ConexoesInterface;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 
 import java.text.SimpleDateFormat;
@@ -10,8 +10,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-public class InsertDados {
-    public static void inserirDadosNoBanco(ConexoesInterface conexoes, Totem totem) throws InterruptedException  {
+public class DadosService {
+    public static void inserirDadosNoBanco(ConexoesController conexoes, Totem totem) throws InterruptedException  {
         Totem totemInsertBanco = conexoes.getCon().queryForObject("SELECT * FROM totem WHERE hostName = ?", new BeanPropertyRowMapper<>(Totem.class),totem.getHostName());
         Integer codigoTotem = totemInsertBanco.getCodigoTotem();
         Integer idProcesador = null;

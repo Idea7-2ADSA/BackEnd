@@ -1,13 +1,14 @@
 package Controller;
 
 import Model.Totem;
-import Service.ConexoesInterface;
+import Service.ComponentesService;
+import Service.DadosService;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import java.util.List;
 import java.util.Scanner;
 
-public class Login {
-    public static void login(ConexoesInterface conexoes, Totem totem) {
+public class LoginController {
+    public static void login(ConexoesController conexoes, Totem totem) {
         Scanner leitor = new Scanner(System.in);
         String hostNameTotem = totem.getHostName();
         List<Totem> totensHostName = conexoes.getCon().query
@@ -29,11 +30,11 @@ public class Login {
                         Inserindo o hostName do totem no banco!
                         """);
                 conexoes.getCon().update("update totem set hostName = ? where codigoTotem = ?", hostNameTotem,codigoTotem);
-                InsertComponentes.inserirComponentesNoBD(conexoes,totem);
+                ComponentesService.inserirComponentesNoBD(conexoes,totem);
             }
         }else {
             try {
-                InsertDados.inserirDadosNoBanco(conexoes, totem);
+                DadosService.inserirDadosNoBanco(conexoes, totem);
             }catch (Exception e) {
                 System.out.println("Houve um erro durante o processo de monitoramento!");
                 System.out.println(e);

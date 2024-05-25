@@ -1,7 +1,7 @@
-package Service;
+package Controller;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 
-public interface ConexoesInterface {
+public interface ConexoesController {
     public JdbcTemplate getCon();
 }

@@ -1,10 +1,10 @@
-package Controller;
+package Service;
 
+import Controller.ConexoesController;
 import Model.Totem;
-import Service.ConexoesInterface;
 
-public class InsertComponentes {
-    public static void inserirComponentesNoBD(ConexoesInterface conexoes, Totem totem ) {
+public class ComponentesService {
+    public static void inserirComponentesNoBD(ConexoesController conexoes, Totem totem ) {
         Integer codigoTotem = totem.getCodigoTotem();
         System.out.println("Inserindo informações dos componentes dessa maquina no banco de dados!");
         if (totem.getProcessador() != null) {
@@ -17,7 +17,7 @@ public class InsertComponentes {
             conexoes.getCon().update("insert into hardware(tipo,fkTotem) values('disco',?)",codigoTotem);
         }
         try {
-            InsertDados.inserirDadosNoBanco(conexoes, totem);
+            DadosService.inserirDadosNoBanco(conexoes, totem);
         }catch (Exception e) {
             System.out.println("Houve um erro durante o processo de monitoramento!");
             System.out.println(e);
