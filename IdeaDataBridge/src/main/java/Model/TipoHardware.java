@@ -4,5 +4,4 @@ public enum TipoHardware {
     PROCESSADOR,
     MEMORIA,
     DISCO;
-
 }

@@ -2,9 +2,9 @@ package Service;
 
 import Controller.ConexoesController;
 import Model.HardWare;
+import Model.TipoHardware;
 import Model.Totem;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -21,13 +21,13 @@ public class DadosService {
                 ("select idHardWare, tipo from hardware where fkTotem = ? ", new BeanPropertyRowMapper<>(HardWare.class),codigoTotem);
         System.out.println(componentes);
         for (HardWare componente : componentes) {
-            if (componente.getTipo().equalsIgnoreCase("processador")) {
+            if (componente.getTipo().equals(TipoHardware.PROCESSADOR)) {
                 idProcesador = componente.getId();
             }
-            if (componente.getTipo().equalsIgnoreCase("memoria")) {
+            if (componente.getTipo().equals(TipoHardware.MEMORIA)) {
                 idMemoria = componente.getId();
             }
-            if (componente.getTipo().equalsIgnoreCase("disco")){
+            if (componente.getTipo().equals(TipoHardware.DISCO)){
                 idDisco = componente.getId();
             }
         }
@@ -75,6 +75,7 @@ public class DadosService {
                             """.formatted(entry.getValue(), dataHora, entry.getKey()));
                 }
             }
+            AlertaService.alertas(totem, conexoes);
             Thread.sleep(15000);
         }
     }

@@ -1,9 +1,6 @@
  import Controller.CriadorController;
  import Controller.LoginController;
  import Model.Totem;
- import Controller.ConexoesController;
-
- import java.util.Map;
 
  public class Main {
     static CriadorController criador = new CriadorController();
@@ -21,10 +18,4 @@
             """);
         LoginController.login(criador.criarConexaoMySQL(), totem);
     }
-
-     public void alertas(Long usoProcessador, Long usoRAM, Map<String, Long> usoVolumes, ConexoesController conexoes) {
-         final Double USO_MAXIMO_PROCESSADOR = 0.0;
-         final Double USO_MAXIMO_RAM = 0.0;
-         final Double USO_MAXIMO_DISCO = 0.0;
-     }
 }
