@@ -9,6 +9,11 @@ public class HardWare {
         this.tipo = tipo;
     }
 
+    public HardWare(Integer id, String tipo) {
+        this.idHardWare = id;
+        this.tipo = TipoHardware.tranformarString(tipo);
+    }
+
     public HardWare() {
     }
 

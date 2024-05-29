@@ -31,13 +31,7 @@ public class LoginController {
                 ComponentesService.inserirComponentesNoBD(conexoes,totem);
             }
         }else {
-            try {
-                DadosService.inserirDadosNoBanco(conexoes, totem);
-            }catch (Exception e) {
-                System.out.println("Houve um erro durante o processo de monitoramento!");
-                System.out.println(e);
-            }
-
+            ComponentesService.inserirComponentesNoBD(conexoes, totensHostName.get(0));
         }
     }
 }
