@@ -2,11 +2,16 @@ package Model;
 
 public class HardWare {
     private Integer idHardWare;
-    private String tipo;
+    private TipoHardware tipo;
+
+    public HardWare(Integer id, TipoHardware tipo) {
+        this.idHardWare = id;
+        this.tipo = tipo;
+    }
 
     public HardWare(Integer id, String tipo) {
         this.idHardWare = id;
-        this.tipo = tipo;
+        this.tipo = TipoHardware.tranformarString(tipo);
     }
 
     public HardWare() {
@@ -20,11 +25,11 @@ public class HardWare {
         this.idHardWare = id;
     }
 
-    public String getTipo() {
+    public TipoHardware getTipo() {
         return tipo;
     }
 
-    public void setTipo(String tipo) {
+    public void setTipo(TipoHardware tipo) {
         this.tipo = tipo;
     }
 

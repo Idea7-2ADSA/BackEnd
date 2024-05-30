@@ -8,13 +8,12 @@ import com.github.britooo.looca.api.group.memoria.Memoria;
 import com.github.britooo.looca.api.group.processador.Processador;
 import com.github.britooo.looca.api.group.rede.RedeInterface;
 import com.github.britooo.looca.api.group.sistema.Sistema;
-
 import java.util.*;
 
 public class Totem {
     static Looca looca = new Looca();
     private Integer codigoTotem;
-    private final String macAddress;
+    private final String hostName;
 
     private final Sistema sistema = looca.getSistema();
     private final Memoria memoria = looca.getMemoria();
@@ -24,25 +23,16 @@ public class Totem {
 
     public Totem(Integer codigoTotem) {
         this.codigoTotem = codigoTotem;
-        this.macAddress = setMacAAdress();
+        this.hostName = setHostName();
     }
 
     public Totem() {
         this.codigoTotem = 0;
-        this.macAddress = setMacAAdress();
+        this.hostName = setHostName();
     }
 
-    public String setMacAAdress() {
-        List<String> listaMacAAdress = new ArrayList<>();
-        for (RedeInterface anInterface : interfaces) {
-            if (!anInterface.getEnderecoIpv4().isEmpty() && anInterface.getNome().contains("wlan")) {
-                listaMacAAdress.add(anInterface.getEnderecoMac());
-            }
-        }
-        if (listaMacAAdress.isEmpty()) {
-            return "";
-        }
-        return listaMacAAdress.get(0);
+    public String setHostName() {
+        return looca.getRede().getParametros().getHostName();
     }
 
     public Integer getCodigoTotem() {
@@ -53,8 +43,8 @@ public class Totem {
         this.codigoTotem = codigoTotem;
     }
 
-    public String getMacAddress() {
-        return macAddress;
+    public String getHostName() {
+        return hostName;
     }
 
     //getters Sistema
@@ -158,7 +148,7 @@ public class Totem {
         return """
                 
                 Código do totem: %s
-                MacAddress do totem: %s
-                """.formatted(this.codigoTotem, this.macAddress);
+                HostName do totem: %s
+                """.formatted(this.codigoTotem, this.hostName);
     }
 }
