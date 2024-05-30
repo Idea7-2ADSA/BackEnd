@@ -19,7 +19,6 @@ public class DadosService {
         Integer idDisco = null;
         List<HardWare> componentes = conexoes.getCon().query
                 ("select idHardWare, tipo from hardware where fkTotem = ? ", new BeanPropertyRowMapper<>(HardWare.class),codigoTotem);
-        System.out.println(componentes);
         for (HardWare componente : componentes) {
             if (componente.getTipo().equals(TipoHardware.PROCESSADOR)) {
                 idProcesador = componente.getId();
