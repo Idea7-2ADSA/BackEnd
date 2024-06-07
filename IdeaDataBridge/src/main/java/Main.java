@@ -1,9 +1,11 @@
  import Controller.CriadorController;
+ import Controller.CriadorControllerSQL;
  import Controller.LoginController;
  import Model.Totem;
 
  public class Main {
     static CriadorController criador = new CriadorController();
+    static CriadorControllerSQL criadorSQL = new CriadorControllerSQL();
     static Totem totem = new Totem();
     public static void main(String[] args) {
         System.out.println("""
@@ -16,6 +18,7 @@
             o888o `Y8bod88P" `Y8bod8P' `Y888""8o   .8'
 
             """);
-        LoginController.login(criador.criarConexaoMySQL(), totem);
+//        LoginController.login(criador.criarConexaoMySQL(), totem);
+        LoginController.login(criadorSQL.criarConexaoSQL(), totem);
     }
 }
