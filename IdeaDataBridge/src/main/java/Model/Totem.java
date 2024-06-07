@@ -136,9 +136,11 @@ public class Totem {
     public Map<String,Long> getPorcentagemUsoVolumes() {
         Map<String, Long> mapaPorcentagemUsoVolumes = new TreeMap<>();
         for (Volume volume : grupoDisco.getVolumes()) {
-            Long emUso = volume.getTotal() - volume.getDisponivel();
-            Long porcentagemVolumeUso = emUso * 100/ volume.getTotal();
-            mapaPorcentagemUsoVolumes.put(volume.getNome(),porcentagemVolumeUso);
+            if(volume.getTotal() > 0) {
+                Long emUso = volume.getTotal() - volume.getDisponivel();
+                Long porcentagemVolumeUso = emUso * 100/ volume.getTotal();
+                mapaPorcentagemUsoVolumes.put(volume.getNome(),porcentagemVolumeUso);
+            }
         }
         return mapaPorcentagemUsoVolumes;
     }
