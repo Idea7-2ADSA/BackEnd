@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 public class DadosService {
-    public static void inserirDadosNoBanco(ConexoesController conexoes, Totem totem) throws InterruptedException  {
+    public static void inserirDadosNoBanco(ConexoesController conexoes, ConexoesController conexoesMysql, Totem totem) throws InterruptedException  {
         Totem totemInsertBanco = conexoes.getCon().queryForObject("SELECT * FROM totem WHERE hostName = ?", new BeanPropertyRowMapper<>(Totem.class),totem.getHostName());
         Integer codigoTotem = totemInsertBanco.getCodigoTotem();
         Integer idProcesador = null;
@@ -40,6 +40,11 @@ public class DadosService {
                 conexoes.getCon().update
                         ("insert into dadosHardWare(porcentagemUso, dataHora, nomeComponente, fkHardWare,fkTotem) values(?, ?, ?, ?, ?)",
                                 totem.getProcessadorUso(), dataHora, totem.getProcessadorNome(), idProcesador, codigoTotem);
+
+                conexoesMysql.getConMySql().update
+                        ("insert into dadosHardWare(porcentagemUso, dataHora, nomeComponente, fkHardWare,fkTotem) values(?, ?, ?, ?, ?)",
+                                totem.getProcessadorUso(), dataHora, totem.getProcessadorNome(), idProcesador, codigoTotem);
+
                 System.out.println("""
                         inserindo dados da CPU:
                         Porcentagem de uso: %d
@@ -50,6 +55,9 @@ public class DadosService {
             //Inserindo dados da Memoria
             if(idMemoria != null) {
                 conexoes.getCon().update
+                        ("insert into dadosHardWare(porcentagemUso, dataHora, nomeComponente, fkHardWare,fkTotem) values(?, ?, ?, ?, ?)",
+                                totem.getPorcentagemUsoMemoria(), dataHora, totem.getMemoriaNome(), idMemoria, codigoTotem);
+                conexoesMysql.getConMySql().update
                         ("insert into dadosHardWare(porcentagemUso, dataHora, nomeComponente, fkHardWare,fkTotem) values(?, ?, ?, ?, ?)",
                                 totem.getPorcentagemUsoMemoria(), dataHora, totem.getMemoriaNome(), idMemoria, codigoTotem);
                 System.out.println("""
@@ -66,6 +74,8 @@ public class DadosService {
                     conexoes.getCon().update
                             ("insert into dadosHardWare(porcentagemUso, dataHora, nomeComponente, fkHardWare,fkTotem) values(?, ?, ?, ?, ?)",
                                     entry.getValue(), dataHora, entry.getKey(),idDisco, codigoTotem);
+                    conexoesMysql.getConMySql().update ("insert into dadosHardWare(porcentagemUso, dataHora, nomeComponente, fkHardWare,fkTotem) values(?, ?, ?, ?, ?)",
+                            entry.getValue(), dataHora, entry.getKey(),idDisco, codigoTotem);
                     System.out.println("""
                             inserindo dados do(s) disco(s):
                             Porcentagem de uso: %d
@@ -74,7 +84,7 @@ public class DadosService {
                             """.formatted(entry.getValue(), dataHora, entry.getKey()));
                 }
             }
-            AlertaService.alertas(totem, conexoes);
+            AlertaService.alertas(totem, conexoesMysql, conexoes);
             Thread.sleep(15000);
         }
     }

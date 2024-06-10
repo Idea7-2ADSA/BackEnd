@@ -8,4 +8,7 @@ public abstract class ConexoesService implements ConexoesController {
     public JdbcTemplate getCon() {
         return null;
     }
+    public JdbcTemplate getConMySql() {
+        return null;
+    }
 }

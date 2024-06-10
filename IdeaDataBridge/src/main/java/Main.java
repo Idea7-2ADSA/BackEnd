@@ -18,7 +18,6 @@
             o888o `Y8bod88P" `Y8bod8P' `Y888""8o   .8'
 
             """);
-//        LoginController.login(criador.criarConexaoMySQL(), totem);
-        LoginController.login(criadorSQL.criarConexaoSQL(), totem);
+        LoginController.login(criadorSQL.criarConexaoSQL(), criador.criarConexaoMySQL(), totem);
     }
 }
