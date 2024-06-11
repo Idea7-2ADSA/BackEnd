@@ -4,20 +4,14 @@ import Model.Totem;
 import Service.ComponentesService;
 import Service.DadosService;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
-
 import java.util.List;
-import java.util.Scanner;
 
 public class LoginController {
-    public static void login(ConexoesController conexoes, ConexoesController conexoesMysql, Totem totem) {
-        Scanner leitor = new Scanner(System.in);
+    public static void login(ConexoesController conexoes, ConexoesController conexoesMysql, Totem totem, Integer codigoTotem) {
         String hostNameTotem = totem.getHostName();
         List<Totem> totensHostName = conexoes.getCon().query
                 ("SELECT codigoTotem, hostName FROM totem WHERE hostName = ?", new BeanPropertyRowMapper<>(Totem.class), hostNameTotem);
-
         if (totensHostName.isEmpty()) {
-            System.out.println("Insira o código do totem:");
-            Integer codigoTotem = leitor.nextInt();
             totem.setCodigoTotem(codigoTotem);
             List<Totem> totensCodigo = conexoes.getCon().query
                     ("SELECT codigoTotem, hostName FROM totem WHERE codigoTotem = ?", new BeanPropertyRowMapper<>(Totem.class), codigoTotem);

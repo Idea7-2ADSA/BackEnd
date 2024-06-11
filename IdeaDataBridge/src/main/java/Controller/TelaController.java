@@ -7,10 +7,6 @@ import java.util.concurrent.TimeUnit;
 public class TelaController {
     private static final ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
 
-    public static void main(String[] args) {
-        iniciarTempoOcioso();
-    }
-
     private static void iniciarTempoOcioso() {
         System.out.println("iniciarTempoOcioso()");
 

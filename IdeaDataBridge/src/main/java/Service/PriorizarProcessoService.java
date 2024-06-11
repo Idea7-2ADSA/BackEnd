@@ -5,10 +5,6 @@ public class PriorizarProcessoService {
     private String comando;
     private static final String sistemaOperacional = System.getProperty("os.name").toLowerCase();
 
-    public static void main(String[] args) {
-        priorizarProcesso("chrome");
-    }
-
     public static void priorizarProcesso(String processo) {
         String comando;
         if (sistemaOperacional.contains("win")) {

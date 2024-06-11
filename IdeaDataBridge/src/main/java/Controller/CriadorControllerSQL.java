@@ -1,6 +1,5 @@
 package Controller;
 
-import Service.ConexaoMySqlService;
 import Service.ConexaoSqlService;
 
 public class CriadorControllerSQL {

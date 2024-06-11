@@ -18,6 +18,16 @@
             o888o `Y8bod88P" `Y8bod8P' `Y888""8o   .8'
 
             """);
-        LoginController.login(criadorSQL.criarConexaoSQL(), criador.criarConexaoMySQL(), totem);
+        if (args.length > 0) {
+            String codigoArgumento = args[0];
+            try {
+                Integer codigoTotem = Integer.parseInt(codigoArgumento);
+                LoginController.login(criadorSQL.criarConexaoSQL(), criador.criarConexaoMySQL(), totem, codigoTotem);
+            }catch (NumberFormatException e) {
+                System.out.println();
+            }
+        }else {
+            System.out.println("Os argumentos estão vazios!");
+        }
     }
 }

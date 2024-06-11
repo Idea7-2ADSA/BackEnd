@@ -1,10 +1,6 @@
 package Service;
 
 public class Reinicializacao {
-    public static void main(String[] args) {
-        reiniciar();
-    }
-
     public static void reiniciar() {
         String comando;
         String sistemaOperacional = System.getProperty("os.name").toLowerCase();
