@@ -21,14 +21,14 @@ public class AlertaService {
             conexoes.getCon().update(
                     "insert into alerta(tipoAlerta, hardWareCorrespondente, diaDaSemana, dataAlerta, fkTotem) values(?, ?, ?, ?, ?)",
                     Alerta.AMARELO.getNome(), TipoHardware.MEMORIA.getNome(), diaSemana, dataSql, totem.getCodigoTotem());
-            conexoesMysql.getConMySql().update(
+            conexoesMysql.getCon().update(
                     "insert into alerta(tipoAlerta, hardWareCorrespondente, diaDaSemana, dataAlerta, fkTotem) values(?, ?, ?, ?, ?)",
                     Alerta.AMARELO, TipoHardware.MEMORIA, diaSemana, dataSql, totem.getCodigoTotem());
 
         }else if (totem.getProcessadorUso() >= USO_MAXIMO_PROCESSADOR && totem.getPorcentagemUsoMemoria() < USO_MAXIMO_RAM) {
             conexoes.getCon().update("insert into alerta(tipoAlerta, hardWareCorrespondente, diaDaSemana, dataAlerta, fkTotem) values(?, ?, ?, ?, ?)",
                     Alerta.AMARELO.getNome(), TipoHardware.PROCESSADOR.getNome(), diaSemana, dataSql, totem.getCodigoTotem());
-            conexoesMysql.getConMySql().update("insert into alerta(tipoAlerta, hardWareCorrespondente, diaDaSemana, dataAlerta, fkTotem) values(?, ?, ?, ?, ?)",
+            conexoesMysql.getCon().update("insert into alerta(tipoAlerta, hardWareCorrespondente, diaDaSemana, dataAlerta, fkTotem) values(?, ?, ?, ?, ?)",
                     Alerta.AMARELO, TipoHardware.PROCESSADOR, diaSemana, dataSql, totem.getCodigoTotem());
 
         }else if (totem.getProcessadorUso() >= USO_MAXIMO_PROCESSADOR && totem.getPorcentagemUsoMemoria() >= USO_MAXIMO_RAM) {
@@ -36,20 +36,20 @@ public class AlertaService {
                 if (volume.getValue() >= USO_MAXIMO_DISCO) {
                     conexoes.getCon().update("insert into alerta(tipoAlerta, hardWareCorrespondente, diaDaSemana, dataAlerta, fkTotem) values(?, ?, ?, ?, ?)",
                             Alerta.VERMELHO.getNome(), "Todos", diaSemana, dataSql, totem.getCodigoTotem());
-                    conexoesMysql.getConMySql().update("insert into alerta(tipoAlerta, hardWareCorrespondente, diaDaSemana, dataAlerta, fkTotem) values(?, ?, ?, ?, ?)",
+                    conexoesMysql.getCon().update("insert into alerta(tipoAlerta, hardWareCorrespondente, diaDaSemana, dataAlerta, fkTotem) values(?, ?, ?, ?, ?)",
                             Alerta.VERMELHO, "Todos", diaSemana, dataSql, totem.getCodigoTotem());
 
                 }else {
                     conexoes.getCon().update("insert into alerta(tipoAlerta, hardWareCorrespondente, diaDaSemana, dataAlerta, fkTotem) values(?, ?, ?, ?, ?)",
                             Alerta.AMARELO.getNome(), "Processador e Memória", diaSemana, dataSql, totem.getCodigoTotem() );
-                    conexoesMysql.getConMySql().update("insert into alerta(tipoAlerta, hardWareCorrespondente, diaDaSemana, dataAlerta, fkTotem) values(?, ?, ?, ?, ?)",
+                    conexoesMysql.getCon().update("insert into alerta(tipoAlerta, hardWareCorrespondente, diaDaSemana, dataAlerta, fkTotem) values(?, ?, ?, ?, ?)",
                             Alerta.AMARELO, "Processador e Memória", diaSemana, dataSql, totem.getCodigoTotem());
                 }
             }
         }else {
             conexoes.getCon().update("insert into alerta(tipoAlerta, hardWareCorrespondente, diaDaSemana, dataAlerta, fkTotem) values(?, ?, ?, ?, ?)",
                     Alerta.VERDE.getNome(), "Nenhum", diaSemana, dataSql, totem.getCodigoTotem());
-            conexoesMysql.getConMySql().update("insert into alerta(tipoAlerta, hardWareCorrespondente, diaDaSemana, dataAlerta, fkTotem) values(?, ?, ?, ?, ?)",
+            conexoesMysql.getCon().update("insert into alerta(tipoAlerta, hardWareCorrespondente, diaDaSemana, dataAlerta, fkTotem) values(?, ?, ?, ?, ?)",
                     Alerta.VERDE, "Nenhum", diaSemana, dataSql, totem.getCodigoTotem());
         }
     }

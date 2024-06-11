@@ -30,7 +30,7 @@ public class LoginController {
                         Inserindo o hostName do totem no banco!
                         """);
                 conexoes.getCon().update("update totem set hostName = ? where codigoTotem = ?", hostNameTotem, codigoTotem);
-                conexoes.getConMySql().update("update totem set hostName = ? where codigoTotem = ?", hostNameTotem, codigoTotem);
+                conexoesMysql.getCon().update("update totem set hostName = ? where codigoTotem = ?", hostNameTotem, codigoTotem);
                 ComponentesService.inserirComponentesNoBD(conexoes, conexoesMysql, totem);
             }
         } else {

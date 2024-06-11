@@ -41,7 +41,7 @@ public class DadosService {
                         ("insert into dadosHardWare(porcentagemUso, dataHora, nomeComponente, fkHardWare,fkTotem) values(?, ?, ?, ?, ?)",
                                 totem.getProcessadorUso(), dataHora, totem.getProcessadorNome(), idProcesador, codigoTotem);
 
-                conexoesMysql.getConMySql().update
+                conexoesMysql.getCon().update
                         ("insert into dadosHardWare(porcentagemUso, dataHora, nomeComponente, fkHardWare,fkTotem) values(?, ?, ?, ?, ?)",
                                 totem.getProcessadorUso(), dataHora, totem.getProcessadorNome(), idProcesador, codigoTotem);
 
@@ -57,7 +57,7 @@ public class DadosService {
                 conexoes.getCon().update
                         ("insert into dadosHardWare(porcentagemUso, dataHora, nomeComponente, fkHardWare,fkTotem) values(?, ?, ?, ?, ?)",
                                 totem.getPorcentagemUsoMemoria(), dataHora, totem.getMemoriaNome(), idMemoria, codigoTotem);
-                conexoesMysql.getConMySql().update
+                conexoesMysql.getCon().update
                         ("insert into dadosHardWare(porcentagemUso, dataHora, nomeComponente, fkHardWare,fkTotem) values(?, ?, ?, ?, ?)",
                                 totem.getPorcentagemUsoMemoria(), dataHora, totem.getMemoriaNome(), idMemoria, codigoTotem);
                 System.out.println("""
@@ -74,7 +74,7 @@ public class DadosService {
                     conexoes.getCon().update
                             ("insert into dadosHardWare(porcentagemUso, dataHora, nomeComponente, fkHardWare,fkTotem) values(?, ?, ?, ?, ?)",
                                     entry.getValue(), dataHora, entry.getKey(),idDisco, codigoTotem);
-                    conexoesMysql.getConMySql().update ("insert into dadosHardWare(porcentagemUso, dataHora, nomeComponente, fkHardWare,fkTotem) values(?, ?, ?, ?, ?)",
+                    conexoesMysql.getCon().update ("insert into dadosHardWare(porcentagemUso, dataHora, nomeComponente, fkHardWare,fkTotem) values(?, ?, ?, ?, ?)",
                             entry.getValue(), dataHora, entry.getKey(),idDisco, codigoTotem);
                     System.out.println("""
                             inserindo dados do(s) disco(s):
