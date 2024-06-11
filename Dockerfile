@@ -1,5 +1,4 @@
 FROM openjdk:17
-COPY ./IdeaDataBridge/src/artefatos/IdeaDataBridgeCliente.jar ./
-WORKDIR ./
-EXPOSE 8080
-CMD ["java","-jar","IdeaDataBridgeCliente.jar"]
+WORKDIR /app
+COPY /IdeaDataBridge/src/artefatos/IdeaDataBridgeCliente.jar /app
+CMD java -jar /app/IdeaDataBridgeCliente.jar $CODIGOTOTEM
