@@ -1,5 +1,4 @@
 package Controller;
-
 import Model.Totem;
 import Service.ComponentesService;
 import Service.DadosService;
@@ -7,7 +6,7 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import java.util.List;
 
 public class LoginController {
-    public static void login(ConexoesController conexoes, ConexoesController conexoesMysql, Totem totem, Integer codigoTotem) {
+    public static void login(ConexoesController conexoes,  ConexoesController conexoesMysql, Totem totem, Integer codigoTotem) {
         String hostNameTotem = totem.getHostName();
         List<Totem> totensHostName = conexoes.getCon().query
                 ("SELECT codigoTotem, hostName FROM totem WHERE hostName = ?", new BeanPropertyRowMapper<>(Totem.class), hostNameTotem);
@@ -29,7 +28,7 @@ public class LoginController {
             }
         } else {
             try {
-                DadosService.inserirDadosNoBanco(conexoes, conexoesMysql, totem);
+                  DadosService.inserirDadosNoBanco(conexoes, conexoesMysql, totensHostName.get(0));
             } catch (Exception e) {
                 System.out.println("Houve um erro durante o processo de monitoramento!");
                 System.out.println(e);

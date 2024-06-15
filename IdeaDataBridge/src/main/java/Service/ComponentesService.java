@@ -10,7 +10,7 @@ import java.util.List;
 
 public class ComponentesService {
     public static void inserirComponentesNoBD(ConexoesController conexoes, ConexoesController conexoesMysql, Totem totem ) {
-        List<HardWare> hardwares = conexoes.getCon().query("select idHardWare, tipo from hardware where fkTotem = ?", new BeanPropertyRowMapper<>(HardWare.class),totem.getCodigoTotem());
+        List<HardWare> hardwares = conexoesMysql.getCon().query("select idHardWare, tipo from hardware where fkTotem = ?", new BeanPropertyRowMapper<>(HardWare.class),totem.getCodigoTotem());
         if (hardwares.isEmpty()) {
             Integer codigoTotem = totem.getCodigoTotem();
             System.out.println("Inserindo informações dos componentes dessa maquina no banco de dados!");

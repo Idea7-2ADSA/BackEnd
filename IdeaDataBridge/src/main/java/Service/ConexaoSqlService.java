@@ -12,9 +12,9 @@ public class ConexaoSqlService extends ConexoesService {
         BasicDataSource bds = new BasicDataSource();
 
         bds.setDriverClassName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-        bds.setUrl("jdbc:sqlserver://100.27.172.173:1433;encrypt=false;databaseName=ideabd;");
+        bds.setUrl("jdbc:sqlserver://44.216.232.183:1433;encrypt=false;databaseName=ideabd;");
         bds.setUsername("sa");
-        bds.setPassword("Duda-2901");
+        bds.setPassword("D@nR1ck2005");
 
         this.con = new JdbcTemplate(bds);
     }

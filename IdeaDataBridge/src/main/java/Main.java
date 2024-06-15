@@ -1,11 +1,9 @@
  import Controller.CriadorController;
- import Controller.CriadorControllerSQL;
  import Controller.LoginController;
  import Model.Totem;
 
  public class Main {
     static CriadorController criador = new CriadorController();
-    static CriadorControllerSQL criadorSQL = new CriadorControllerSQL();
     static Totem totem = new Totem();
     public static void main(String[] args) {
         System.out.println("""
@@ -18,16 +16,8 @@
             o888o `Y8bod88P" `Y8bod8P' `Y888""8o   .8'
 
             """);
-        if (args.length > 0) {
-            String codigoArgumento = args[0];
-            try {
-                Integer codigoTotem = Integer.parseInt(codigoArgumento);
-                LoginController.login(criadorSQL.criarConexaoSQL(), criador.criarConexaoMySQL(), totem, codigoTotem);
-            }catch (NumberFormatException e) {
-                System.out.println();
-            }
-        }else {
-            System.out.println("Os argumentos estão vazios!");
-        }
+        Integer codigoTotem = 184329;
+        LoginController.login(criador.criarConexaoSQL() ,criador.criarConexaoMySQL(), totem, codigoTotem);
+
     }
 }
